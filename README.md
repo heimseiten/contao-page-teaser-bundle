@@ -1,5 +1,2 @@
-![Alt text](src/Resources/public/logo.png?raw=true "logo")
-
-
-# Seitenteaser
-Automatisch genereierte Seitenteaser.
+# Inhaltselement Seitenteaser
+Automatisch generierte Seitenteaser.
