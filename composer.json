@@ -21,7 +21,7 @@
     },
     "require": {
         "contao/core-bundle": "^4.4",
-        "terminal42/contao-pageimage": "^4.0",
+        "terminal42/contao-pageimage": "^1.0",
         "heimseiten/contao-inviewport-bundle": "^1.0"
     },
     "require-dev": {
