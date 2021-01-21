@@ -11,10 +11,4 @@
  */
 
     
-    function foo($arg_1)
-    {
-        
-        echo $arg_1;
-        
-    }
 
