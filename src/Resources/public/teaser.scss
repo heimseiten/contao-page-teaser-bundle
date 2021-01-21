@@ -1,3 +1,4 @@
+.ce_teaser_element { overflow: visible; }
 .ce_teaser_container > .inside { display: flex; flex-wrap: wrap; justify-content: center; transition: transform 0.25s ease-in-out;
     @media(max-width:1600px){ transform: scale(0.8); }
     @media(max-width:1150px){ transform: scale(0.9); }
@@ -31,7 +32,7 @@
 
 body.ivp_active .ce_teaser_wrapper {
 	&.ivp .inside { opacity: 0; transform: translate3d(0,100%,0); transition: transform 2.5s, opacity 2s; }
-	&.iivp .inside 	 { opacity: 1; transform: translate3d(0,0,0); }
+	&.wivp .inside 	 { opacity: 1; transform: translate3d(0,0,0); }
 	&.pos_1 .inside { transition-delay: 0.5s; }
 	&.pos_2 .inside { transition-delay: 1s; }
 	&.pos_3 .inside { transition-delay: 0s; }
