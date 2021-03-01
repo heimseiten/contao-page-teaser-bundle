@@ -20,8 +20,8 @@
         "source": "https://github.com/heimseiten/contao-page-teaser-bundle"
     },
     "require": {
-        "contao/core-bundle": "^4.4",
-        "terminal42/contao-pageimage": "^1.0",
+        "contao/core-bundle": "^4.9",
+        "terminal42/contao-pageimage": "^4.0",
         "heimseiten/contao-inviewport-bundle": "^1.0"
     },
     "require-dev": {
