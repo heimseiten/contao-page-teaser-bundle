@@ -16,7 +16,7 @@ function getImage($page_id, $page_pid, $pages, $size_id, $without_text, $teaser_
             if ($teaser_only_sub_pages) {
                 $arrResults = \Database::getInstance()->query("SELECT `id`, `pid`, `title`, `pageTitle`, `description`, `teaser_headline`, `teaser_text`, `pageImage`, `target` FROM `tl_page` WHERE pid in (". implode(',',$pages) .") AND `type`!='folder' AND `type`!='error_404' AND `hide`!='1' AND `published`='1' AND `id`!='".$page_id."' ORDER BY `sorting`;")->fetchAllAssoc();    
             } else {
-                $arrResults = \Database::getInstance()->query("SELECT `id`, `title`, `pageTitle`, `description`, `teaser_headline`, `teaser_text`, `pageImage`, `target` FROM `tl_page` WHERE id in (". implode(',',$pages) .") AND `type`!='folder' AND `type`!='error_404' AND `hide`!='1' AND `published`='1' AND `id`!='".$page_id."' ORDER BY `sorting`;")->fetchAllAssoc();    
+                $arrResults = \Database::getInstance()->query("SELECT `id`, `title`, `pageTitle`, `description`, `teaser_headline`, `teaser_text`, `pageImage`, `target` FROM `tl_page` WHERE id in (". implode(',',$pages) .") AND `type`!='folder' AND `type`!='error_404' AND `published`='1' AND `id`!='".$page_id."' ORDER BY `sorting`;")->fetchAllAssoc();    
             }
         } else {
             $arrResults = \Database::getInstance()->query(    "SELECT `id`, `title`, `pageTitle`, `description`, `teaser_headline`, `teaser_text`, `pageImage`, `target` FROM `tl_page` WHERE pid =". $page_id ." AND `type`!='folder' AND `type`!='error_404' AND `hide`!='1' AND `published`='1' ORDER BY `sorting`;")->fetchAllAssoc();    
