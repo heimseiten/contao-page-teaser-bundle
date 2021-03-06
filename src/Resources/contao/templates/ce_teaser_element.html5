@@ -19,7 +19,7 @@
 
 <div class="ce_teaser_container <?= $this->class ?>" style="<?= $this->style ?>">
     <div class="inside">
-        <?php getImage($objPage->id, $objPage->pid, $this->teaser_pages,$teaser_image_size_id, $without_text); ?>
+        <?php getImage($objPage->id, $objPage->pid, deserialize($this->teaser_pages),$teaser_image_size_id, $without_text); ?>
     </div>
 </div>
 
