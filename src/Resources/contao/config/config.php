@@ -33,7 +33,7 @@ function getImage($page_id, $page_pid, $pages, $size_id, $without_text, $teaser_
                 }
             }
             $link_name = strip_tags($link_name);
-            echo '<div class="ce_teaser_wrapper pos_'.$i.' ivp" '.$style.'>';
+            echo '<div class="ce_teaser_wrapper" '.$style.'>';
                 echo '<div class="inside">
                         <a href="{{link_url::'.$arrResults[$i]['id'].'}}" class="ce_teaser_item" aria-label="' . $link_name . '">'; 
                     if ($arrResults[$i]['pageImage']) { renderPageImage($arrResults[$i]['pageImage']); } 
