@@ -52,7 +52,7 @@ $GLOBALS['TL_DCA']['tl_page']['fields'] += [
         'options'          => \System::getImageSizes(),
         'reference'        => &$GLOBALS['TL_LANG']['MSC'],
         'eval'             => array( 'rgxp' => 'digit', 'includeBlankOption' => true, 'tl_class'  => 'clr' ),
-        'sql'              => "text NOT NULL default ''"
+        'sql'              => "varchar(64) NOT NULL default ''"
     ],
     'teaser_without_text' => [
         'inputType'     => 'checkbox', 

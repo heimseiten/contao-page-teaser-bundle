@@ -8,9 +8,11 @@
         global $objPage; 
     }
     if ($objPage->pid) {
-        $arrResults = \Database::getInstance()->query("SELECT id, teaser_image_size_id, teaser_without_text FROM `tl_page` WHERE id =". $objPage->pid ." ;")->fetchAllAssoc();    
-        $teaser_image_size_id = deserialize($arrResults[0]['teaser_image_size_id'])[2];
-        $without_text = $arrResults[0]['teaser_without_text'];
+        $arrResults = \Database::getInstance()->query("SELECT id, teaser_image_size_id, teaser_without_text FROM `tl_page` WHERE id =". $objPage->pid ." ;")->fetchAllAssoc();
+        if (count($arrResults) >= 1) {
+            $teaser_image_size_id = deserialize($arrResults[0]['teaser_image_size_id'])[2];
+            $without_text = $arrResults[0]['teaser_without_text'];
+        }
     }
     
     if ($this->teaser_max_width) { $this->style = $this->style. ' --teaser_max_width: ' . $this->teaser_max_width .';'; }  
