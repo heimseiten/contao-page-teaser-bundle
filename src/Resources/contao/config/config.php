@@ -38,8 +38,9 @@ function getImage($page_id, $page_pid, $pages, $size_id, $without_text, $teaser_
             echo '<div class="ce_teaser_wrapper" '.$style.'>';
                 echo '<div class="inside">
                         <a'.$target.' href="{{link_url::'.$arrResults[$i]['id'].'}}" class="ce_teaser_item" aria-label="' . $link_name . '">'; 
-                    if ($arrResults[$i]['pageImage']) { renderPageImage( $arrResults[$i]['pageImage'], $size_id ); } 
-                    else {
+                    if ($arrResults[$i]['pageImage']) { 
+                        renderPageImage( $arrResults[$i]['pageImage'], $size_id ); 
+                    } else {
                         $pageId = $arrResults[$i]['id'];
                         $tl_article = \Database::getInstance()->query("SELECT id, pid, cc_bg_image FROM `tl_article` WHERE pid=".$pageId." ORDER BY `sorting` LIMIT 4;")->fetchAllAssoc();
                         if ($tl_article[0]['cc_bg_image'] !='') {

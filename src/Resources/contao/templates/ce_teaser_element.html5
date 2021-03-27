@@ -7,8 +7,8 @@
         $GLOBALS['TL_JAVASCRIPT'][] = 'bundles/heimseitencontaoinviewport/inViewport.js';
         global $objPage; 
     }
-    if ($objPage->pid) {
-        $arrResults = \Database::getInstance()->query("SELECT id, teaser_image_size_id, teaser_without_text FROM `tl_page` WHERE id =". $objPage->pid ." ;")->fetchAllAssoc();
+    if ($GLOBALS['objPage']->rootId) {
+        $arrResults = \Database::getInstance()->query("SELECT id, teaser_image_size_id, teaser_without_text FROM `tl_page` WHERE id =". $GLOBALS['objPage']->rootId ." ;")->fetchAllAssoc();
         if (count($arrResults) >= 1) {
             $teaser_image_size_id = deserialize($arrResults[0]['teaser_image_size_id'])[2];
             $without_text = $arrResults[0]['teaser_without_text'];
