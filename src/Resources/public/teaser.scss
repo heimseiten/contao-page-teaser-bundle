@@ -1,8 +1,5 @@
 .ce_teaser_element { overflow: visible; }
 .ce_teaser_container > .inside { display: flex; flex-wrap: wrap; justify-content: center; transition: transform 0.25s ease-in-out;
-    @media(max-width:1600px){ transform: scale(0.8); }
-    @media(max-width:1150px){ transform: scale(0.9); }
-    @media(max-width:1023px){ transform: scale(1); }
     .ce_teaser_wrapper { padding: 30px; max-width: var(--teaser_max_width, 33.33%); min-width: var(--teaser_min_width, 300px);
         @media(max-width:1023px){ width: calc( 100% / 3) !important; max-width: 412px !important; padding: 10px; }
         @media(max-width:767px){ width: calc( 100% / 2) !important; max-width: 412px !important; padding: 10px; }
