@@ -42,9 +42,9 @@ function getImage($page_id, $page_pid, $pages, $size_id, $without_text, $teaser_
                         renderPageImage( $arrResults[$i]['pageImage'], $size_id ); 
                     } else {
                         $pageId = $arrResults[$i]['id'];
-                        $tl_article = \Database::getInstance()->query("SELECT id, pid, cc_bg_image FROM `tl_article` WHERE pid=".$pageId." ORDER BY `sorting` LIMIT 4;")->fetchAllAssoc();
-                        if ($tl_article[0]['cc_bg_image'] !='') {
-                            echo('{{picture::'.\FilesModel::findByUuid($tl_article[0]['cc_bg_image'])->path.'?size='.$size_id.'}}');
+                        $tl_article = \Database::getInstance()->query("SELECT id, pid, articleImage FROM `tl_article` WHERE pid=".$pageId." ORDER BY `sorting` LIMIT 4;")->fetchAllAssoc();
+                        if ($tl_article[0]['articleImage'] !='') {
+                            echo('{{picture::'.\FilesModel::findByUuid($tl_article[0]['articleImage'])->path.'?size='.$size_id.'}}');
                         } else {  
                             if ($tl_article[0]['id']) {
                                 $tl_content = \Database::getInstance()->query("SELECT id, pid, invisible, singleSRC FROM `tl_content` WHERE pid=".$tl_article[0]['id']." AND `invisible`!='1' AND `singleSRC`!='' AND ((`addImage`='1') OR (`type`='image')) ORDER BY `sorting` LIMIT 5;")->fetchAllAssoc();
