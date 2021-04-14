@@ -7,7 +7,7 @@ $GLOBALS['TL_LANG']['tl_page']['teaser_headline'] = ['Seitenteaser Überschrift'
 $GLOBALS['TL_LANG']['tl_page']['teaser_text'] = ['Seitenteaser Text', ''];
 
 $GLOBALS['TL_LANG']['tl_layout']['teaser_legend'] = 'Aussehen der Teaser';
-$GLOBALS['TL_LANG']['tl_layout']['teaser_image_size_id'] = ['Seitenteaser Bildgröße', ''];
+$GLOBALS['TL_LANG']['tl_layout']['teaser_image_size_id'] = ['Seitenteaser Bildgröße', 'Aktuell werden nur vordefinierte Bildgrößen unterstützt.'];
 $GLOBALS['TL_LANG']['tl_layout']['teaser_without_text'] = ['Seitenteaser ohne Text darstellen', ''];
 
 $GLOBALS['TL_LANG']['tl_content']['teaser_legend'] = 'Seite/n, deren Teaser dargestellt werden soll/en.';
