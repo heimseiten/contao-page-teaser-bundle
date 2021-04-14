@@ -5,10 +5,10 @@
     if (TL_MODE == "FE") {
         $GLOBALS['TL_CSS'][] = 'bundles/heimseitencontaopageteaser/teaser.scss|static';
         $GLOBALS['TL_JAVASCRIPT'][] = 'bundles/heimseitencontaoinviewport/inViewport.js';
-        global $objPage; 
+        global $objPage;
     }
-    if ($GLOBALS['objPage']->rootId) {
-        $arrResults = \Database::getInstance()->query("SELECT id, teaser_image_size_id, teaser_without_text FROM `tl_page` WHERE id =". $GLOBALS['objPage']->rootId ." ;")->fetchAllAssoc();
+    if ($GLOBALS['objPage']->layoutId) {
+        $arrResults = \Database::getInstance()->query("SELECT id, teaser_image_size_id, teaser_without_text FROM `tl_layout` WHERE id =". $GLOBALS['objPage']->layoutId ." ;")->fetchAllAssoc();
         if (count($arrResults) >= 1) {
             $teaser_image_size_id = deserialize($arrResults[0]['teaser_image_size_id'])[2];
             $without_text = $arrResults[0]['teaser_without_text'];
