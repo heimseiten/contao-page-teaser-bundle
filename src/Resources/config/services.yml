@@ -1,5 +1,10 @@
 services:
-  Heimseiten\ContaoArticleImageBundle\Listener\HooksListener:
-    tags:
-      - { name: contao.hook, hook: compileArticle, method: onCompileArticle, priority: 0 }
-      - { name: contao.hook, hook: parseTemplate, method: onParseTemplate, priority: 0 }
+
+
+    # Contao content element Heimseiten\ContaoPageTeaserBundle\Controller\ContentElement\TeaserElementController
+    Heimseiten\ContaoPageTeaserBundle\Controller\ContentElement\TeaserElementController:
+        tags:
+            - { name: contao.content_element, category: links, template: ce_teaser_element, type: teaser_element }
+            - { name: container.service_subscriber }
+        public: true
+
