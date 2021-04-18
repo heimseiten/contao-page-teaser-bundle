@@ -1,20 +1,12 @@
 <?php
 
-$GLOBALS['TL_LANG']['CTE']['teaser_element'] = ['Seitenteaser', 'Seitenteaser'];
-
-$GLOBALS['TL_LANG']['tl_page']['teaser_legend'] = 'Seitenteaser Text';
-$GLOBALS['TL_LANG']['tl_page']['teaser_headline'] = ['Seitenteaser Überschrift', ''];
-$GLOBALS['TL_LANG']['tl_page']['teaser_text'] = ['Seitenteaser Text', ''];
-
-$GLOBALS['TL_LANG']['tl_layout']['teaser_legend'] = 'Aussehen der Teaser';
-$GLOBALS['TL_LANG']['tl_layout']['teaser_image_size_id'] = ['Seitenteaser Bildgröße', 'Aktuell werden nur vordefinierte Bildgrößen unterstützt.'];
-$GLOBALS['TL_LANG']['tl_layout']['teaser_without_text'] = ['Seitenteaser ohne Text darstellen', ''];
-
-$GLOBALS['TL_LANG']['tl_content']['teaser_legend'] = 'Seite/n, deren Teaser dargestellt werden soll/en.';
-$GLOBALS['TL_LANG']['tl_content']['teaser_pages'] = ['Seite/n für die ein Teaser-Element dargestellt werden soll.', 'Wenn nichts ausgewählt ist, werden Teaser von allen Unterseiten dargestellt. Wenn die Seite keine Unterseiten hat, werden alle anderen Seiten der gleichen Navigationsebene dargestellt.'];
-
-$GLOBALS['TL_LANG']['tl_content']['teaser_appearance_legend'] = 'Aussehen der Teaser';
-$GLOBALS['TL_LANG']['tl_content']['teaser_min_width'] = ['minimale Teaser-Breite', 'Standardeinstellung ist 300px. Eingegeben können Werte mit Einheiten. Bspw.: 100px oder 20% oder 20vw usw.'];
-$GLOBALS['TL_LANG']['tl_content']['teaser_max_width'] = ['maximale Teaser-Breite', 'Standardeinstellung ist 33.33%. Eingegeben können Werte mit Einheiten. Bspw.: 100px oder 20% oder 20vw usw.'];
-$GLOBALS['TL_LANG']['tl_content']['teaser_only_sub_pages'] = ['Nicht die ausgewählte/n Seite/n verwenden, sondern alle Unterseiten.', ''];
-$GLOBALS['TL_LANG']['tl_content']['teaser_image_size_id'] = ['Bildgröße', ''];
+$GLOBALS['TL_LANG']['tl_article']['articleBg'] = 'Hintergrundbild und/oder -video';
+$GLOBALS['TL_LANG']['tl_article']['articleImage'] = array ( 'Artikelhintergrundbild', '' );
+$GLOBALS['TL_LANG']['tl_article']['size'] = array ( 'Artikelhintergrundbildgröße', 'Aktuell werden nur vordefinierte Bildgrößen unterstützt!' );
+$GLOBALS['TL_LANG']['tl_article']['articleVideo'] = array ( 'Artikelhintergrundvideo', '' );
+$GLOBALS['TL_LANG']['tl_article']['noBgVideoLoop'] = array ( 'Video nicht in Endlosschleife abspielen', '' );
+$GLOBALS['TL_LANG']['tl_article']['viewBgVideoOnMobile'] = array ( 'Artikelhintergrundvideo in der mobilen Ansicht ausblenden', '' );
+$GLOBALS['TL_LANG']['tl_article']['viewBgImageOnMobile'] = array ( 'Artikelhintergrundbild in der mobilen Ansicht ausblenden', '' );
+$GLOBALS['TL_LANG']['tl_article']['verticalBgShift'] = array ( 'Hintergrund vertical nach oben verschieben in %', '' );
+$GLOBALS['TL_LANG']['tl_article']['bgParallax'] = array ( 'Parallax-Effekt', '' );
+$GLOBALS['TL_LANG']['tl_article']['BgCssFilter'] = array ( 'CSS-Filter', 'Bspw. opacity(.2) grayscale(1) usw. siehe Bsp. auf <a href="https://blog.kulturbanause.de/2015/03/css-filter-effekte/" target="_blank">kulturbanause.de</a>' );
