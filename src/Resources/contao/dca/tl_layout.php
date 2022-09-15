@@ -2,7 +2,6 @@
 
 use Contao\Config;
 use Contao\CoreBundle\DataContainer\PaletteManipulator;
-use Contao\System;
 
 PaletteManipulator::create()
     ->addLegend('teaser_legend',        'image_legend', PaletteManipulator::POSITION_AFTER)
@@ -13,11 +12,15 @@ PaletteManipulator::create()
 
 $GLOBALS['TL_DCA']['tl_layout']['fields'] += [    
     'teaser_image_size_id' => [
-        'inputType'        => 'imageSize',
-        'options'          => \System::getImageSizes(),
-        'reference'        => &$GLOBALS['TL_LANG']['MSC'],
-        'eval'             => array( 'rgxp' => 'digit', 'includeBlankOption' => true, 'tl_class'  => 'clr' ),
-        'sql'              => "varchar(64) NOT NULL default ''"
+            'exclude'                 => true,
+			'inputType'               => 'imageSize',
+			'reference'               => &$GLOBALS['TL_LANG']['MSC'],
+			'eval'                    => array('rgxp'=>'natural', 'includeBlankOption'=>true, 'nospace'=>true, 'helpwizard'=>true, 'tl_class'=>'w50'),
+			'options_callback' => static function ()
+			{
+				return Contao\System::getContainer()->get('contao.image.sizes')->getOptionsForUser(Contao\BackendUser::getInstance());
+			},
+			'sql'                     => "varchar(255) NOT NULL default ''"
     ],
     'teaser_without_text' => [
         'inputType'     => 'checkbox', 
