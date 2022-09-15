@@ -2,6 +2,7 @@
 
 use Contao\Config;
 use Contao\CoreBundle\DataContainer\PaletteManipulator;
+use Contao\System;
 
 PaletteManipulator::create()
     ->addLegend('teaser_legend',        'image_legend', PaletteManipulator::POSITION_AFTER)
