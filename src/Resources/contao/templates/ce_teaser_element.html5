@@ -2,13 +2,17 @@
 <?php $this->block('content'); ?>
 
 <?php 
+    use Contao\StringUtil;  
+    
     $GLOBALS['TL_CSS'][] = 'bundles/heimseitencontaopageteaser/teaser.scss|static';
     $GLOBALS['TL_JAVASCRIPT'][] = 'bundles/heimseitencontaoinviewport/inViewport.js';
     global $objPage;
     if ($GLOBALS['objPage']->layoutId) {
-        $arrResults = \Database::getInstance()->query("SELECT id, teaser_image_size_id, teaser_without_text FROM `tl_layout` WHERE id =". $GLOBALS['objPage']->layoutId ." ;")->fetchAllAssoc();
+        $db = \Contao\System::getContainer()->get('database_connection');
+        $arrResults = $db->executeQuery("SELECT id, teaser_image_size_id, teaser_without_text FROM `tl_layout` WHERE id =". $GLOBALS['objPage']->layoutId ." ;")->fetchAll(); 
         if (count($arrResults) >= 1) {
-            $teaser_image_size_id = deserialize($arrResults[0]['teaser_image_size_id'])[2];
+            $teaser_image_size_id = StringUtil::deserialize($arrResults[0]['teaser_image_size_id'])[2];
+            $teaser_image_size_id = '2';
             $without_text = $arrResults[0]['teaser_without_text'];
         }
     }
@@ -19,7 +23,9 @@
 
 <div class="ce_teaser_container ivp <?= $this->class ?>" style="<?= $this->style ?>">
     <div class="inside">
-        <?php getImage($objPage->id, $objPage->pid, deserialize($this->teaser_pages),$teaser_image_size_id, $without_text, $this->teaser_only_sub_pages); ?>
+        <?php 
+        getImage($objPage->id, $objPage->pid, StringUtil::deserialize($this->teaser_pages),$teaser_image_size_id, $without_text, $this->teaser_only_sub_pages); 
+        ?>
     </div>
 </div>
 
