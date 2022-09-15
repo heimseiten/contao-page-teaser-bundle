@@ -12,7 +12,6 @@
         $arrResults = $db->executeQuery("SELECT id, teaser_image_size_id, teaser_without_text FROM `tl_layout` WHERE id =". $GLOBALS['objPage']->layoutId ." ;")->fetchAll(); 
         if (count($arrResults) >= 1) {
             $teaser_image_size_id = StringUtil::deserialize($arrResults[0]['teaser_image_size_id'])[2];
-            $teaser_image_size_id = '2';
             $without_text = $arrResults[0]['teaser_without_text'];
         }
     }
@@ -24,7 +23,13 @@
 <div class="ce_teaser_container ivp <?= $this->class ?>" style="<?= $this->style ?>">
     <div class="inside">
         <?php 
-        getImage($objPage->id, $objPage->pid, StringUtil::deserialize($this->teaser_pages),$teaser_image_size_id, $without_text, $this->teaser_only_sub_pages); 
+            use Contao\System;
+            use Symfony\Component\HttpFoundation\Request;
+
+            if (System::getContainer()->get('contao.routing.scope_matcher')->isBackendRequest(System::getContainer()->get('request_stack')->getCurrentRequest() ?? Request::create(''))) {
+            } else {
+                getImage($objPage->id, $objPage->pid, StringUtil::deserialize($this->teaser_pages),$teaser_image_size_id, $without_text, $this->teaser_only_sub_pages); 
+            }
         ?>
     </div>
 </div>
