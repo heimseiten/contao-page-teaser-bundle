@@ -2,7 +2,8 @@
 
 $GLOBALS['TL_LANG']['CTE']['teaser_element'] = ['Seitenteaser', 'Seitenteaser'];
 
-$GLOBALS['TL_LANG']['tl_page']['teaser_legend'] = 'Seitenteaser Text';
+$GLOBALS['TL_LANG']['tl_page']['pageImage'] = array ( 'Bild', '' );
+$GLOBALS['TL_LANG']['tl_page']['teaser_legend'] = 'Seitenteaser';
 $GLOBALS['TL_LANG']['tl_page']['teaser_headline'] = ['Seitenteaser Überschrift', ''];
 $GLOBALS['TL_LANG']['tl_page']['teaser_text'] = ['Seitenteaser Text', ''];
 
