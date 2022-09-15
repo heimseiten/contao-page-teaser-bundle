@@ -2,11 +2,9 @@
 <?php $this->block('content'); ?>
 
 <?php 
-    if (TL_MODE == "FE") {
-        $GLOBALS['TL_CSS'][] = 'bundles/heimseitencontaopageteaser/teaser.scss|static';
-        $GLOBALS['TL_JAVASCRIPT'][] = 'bundles/heimseitencontaoinviewport/inViewport.js';
-        global $objPage;
-    }
+    $GLOBALS['TL_CSS'][] = 'bundles/heimseitencontaopageteaser/teaser.scss|static';
+    $GLOBALS['TL_JAVASCRIPT'][] = 'bundles/heimseitencontaoinviewport/inViewport.js';
+    global $objPage;
     if ($GLOBALS['objPage']->layoutId) {
         $arrResults = \Database::getInstance()->query("SELECT id, teaser_image_size_id, teaser_without_text FROM `tl_layout` WHERE id =". $GLOBALS['objPage']->layoutId ." ;")->fetchAllAssoc();
         if (count($arrResults) >= 1) {
