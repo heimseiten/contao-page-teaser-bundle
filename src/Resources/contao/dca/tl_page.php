@@ -5,6 +5,7 @@ use Contao\CoreBundle\DataContainer\PaletteManipulator;
 
 PaletteManipulator::create()
     ->addLegend('teaser_legend', 'image_legend', PaletteManipulator::POSITION_AFTER)
+    ->addField('pageImage','teaser_legend', PaletteManipulator::POSITION_APPEND)
     ->addField('teaser_headline','teaser_legend', PaletteManipulator::POSITION_APPEND)
     ->addField('teaser_text',    'teaser_legend', PaletteManipulator::POSITION_APPEND)
     ->applyToPalette('regular', 'tl_page')
