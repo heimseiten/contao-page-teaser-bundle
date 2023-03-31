@@ -30,7 +30,9 @@
                 aspect-ratio: 1.9; 
                 object-fit: cover; 
             }
-            &:hover { transform: translateZ(0) scale(1.02, 1.02); 
+            &:hover { 
+                transform: translateZ(0) scale(1.02, 1.02);
+                text-decoration: none;
             }
             .text { 
                 padding: 20px 20px 0 20px; 
