@@ -7,14 +7,14 @@ function getImage($page_id, $page_pid, $pages, $size_id, $without_text, $teaser_
 
         if ($pages) {
             if ($teaser_only_sub_pages) {
-                $arrResults = $db->executeQuery("SELECT `id`, `pid`, `title`, `pageTitle`, `description`, `teaser_headline`, `teaser_text`, `pageImage`, `target` FROM `tl_page` WHERE pid in (". implode(',',$pages) .") AND `type`!='folder' AND `type`!='error_404' AND `hide`!='1' AND `published`='1' AND `id`!='".$page_id."' ORDER BY `sorting`;")->fetchAll();    
+                $arrResults = $db->executeQuery("SELECT `id`, `pid`, `title`, `pageTitle`, `description`, `teaser_headline`, `teaser_text`, `pageImage`, `target`, `cssClass` FROM `tl_page` WHERE pid in (". implode(',',$pages) .") AND `type`!='folder' AND `type`!='error_404' AND `hide`!='1' AND `published`='1' AND `id`!='".$page_id."' ORDER BY `sorting`;")->fetchAll();    
             } else {
-                $arrResults = $db->executeQuery("SELECT `id`, `title`, `pageTitle`, `description`, `teaser_headline`, `teaser_text`, `pageImage`, `target` FROM `tl_page` WHERE id in (". implode(',',$pages) .") AND `type`!='folder' AND `type`!='error_404' AND `published`='1' AND `id`!='".$page_id."' ORDER BY `sorting`;")->fetchAll();    
+                $arrResults = $db->executeQuery("SELECT `id`, `title`, `pageTitle`, `description`, `teaser_headline`, `teaser_text`, `pageImage`, `target`, `cssClass` FROM `tl_page` WHERE id in (". implode(',',$pages) .") AND `type`!='folder' AND `type`!='error_404' AND `published`='1' AND `id`!='".$page_id."' ORDER BY `sorting`;")->fetchAll();    
             }
         } else {
-            $arrResults = $db->executeQuery("SELECT `id`, `title`, `pageTitle`, `description`, `teaser_headline`, `teaser_text`, `pageImage`, `target` FROM `tl_page` WHERE pid =". $page_id ." AND `type`!='folder' AND `type`!='error_404' AND `hide`!='1' AND `published`='1' ORDER BY `sorting`;")->fetchAll();    
+            $arrResults = $db->executeQuery("SELECT `id`, `title`, `pageTitle`, `description`, `teaser_headline`, `teaser_text`, `pageImage`, `target`, `cssClass` FROM `tl_page` WHERE pid =". $page_id ." AND `type`!='folder' AND `type`!='error_404' AND `hide`!='1' AND `published`='1' ORDER BY `sorting`;")->fetchAll();    
             if ($arrResults == NULL){ 
-                $arrResults = $db->executeQuery("SELECT `id`, `pid`, `title`, `pageTitle`, `description`, `teaser_headline`, `teaser_text`, `pageImage`, `target` FROM `tl_page` WHERE pid =". $page_pid ." AND `type`!='folder' AND `type`!='error_404' AND `hide`!='1' AND `published`='1' AND `id`!='".$page_id."' ORDER BY `sorting`;")->fetchAll();    
+                $arrResults = $db->executeQuery("SELECT `id`, `pid`, `title`, `pageTitle`, `description`, `teaser_headline`, `teaser_text`, `pageImage`, `target`, `cssClass` FROM `tl_page` WHERE pid =". $page_pid ." AND `type`!='folder' AND `type`!='error_404' AND `hide`!='1' AND `published`='1' AND `id`!='".$page_id."' ORDER BY `sorting`;")->fetchAll();    
             }            
         }
         $length = count($arrResults);
@@ -28,7 +28,7 @@ function getImage($page_id, $page_pid, $pages, $size_id, $without_text, $teaser_
             $link_name = strip_tags($link_name);
             $target = '';
             if ($arrResults[$i]['target']) { $target = ' target="_blank"'; }
-            echo '<div class="ce_teaser_wrapper" '.$style.'>';
+            echo '<div class="ce_teaser_wrapper ' . $arrResults[$i]['cssClass'] . '" '.$style.'>';
                 echo '<div class="inside">
                         <a'.$target.' href="{{link_url::'.$arrResults[$i]['id'].'}}" class="ce_teaser_item" aria-label="' . $link_name . '">'; 
                     if ($arrResults[$i]['pageImage']) { 
