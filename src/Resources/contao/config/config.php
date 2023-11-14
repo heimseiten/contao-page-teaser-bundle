@@ -35,31 +35,27 @@ function getImage($page_id, $page_pid, $pages, $size_id, $without_text, $teaser_
                         renderPageImage( $arrResults[$i]['pageImage'], $size_id ); 
                     } else {
                         $pageId = $arrResults[$i]['id'];
-                        $tl_article = $db->executeQuery("SELECT id, pid, articleImage FROM `tl_article` WHERE pid=".$pageId." ORDER BY `sorting` LIMIT 4;")->fetchAll();
-                        if ($tl_article[0]['articleImage'] !='') {
-                            echo('{{picture::'.\Contao\FilesModel::findByUuid($tl_article[0]['articleImage'])->path.'?size='.$size_id.'}}');
-                        } else {  
-                            if ($tl_article[0]['id']) {
-                                $tl_content = $db->executeQuery("SELECT id, pid, invisible, singleSRC FROM `tl_content` WHERE pid=".$tl_article[0]['id']." AND `invisible`!='1' AND `singleSRC`!='' AND ((`addImage`='1') OR (`type`='image')) ORDER BY `sorting` LIMIT 5;")->fetchAll();
-                                if ($tl_content[0]['singleSRC']!='') { 
-                                    echo('{{picture::'.\Contao\FilesModel::findByUuid($tl_content[0]['singleSRC'])->path.'?size='.$size_id.'}}');
-                                } else {
-                                    if ($tl_article[1]['id']) {
-                                        $tl_content = $db->executeQuery("SELECT id, pid, invisible, singleSRC FROM `tl_content` WHERE pid=".$tl_article[1]['id']." AND `invisible`!='1' AND `singleSRC`!='' AND ((`addImage`='1') OR (`type`='image')) ORDER BY `sorting` LIMIT 5;")->fetchAll();
-                                        if ($tl_content[1]['singleSRC']!='') { 
-                                            echo('{{picture::'.\Contao\FilesModel::findByUuid($tl_content[0]['singleSRC'])->path.'?size='.$size_id.'}}');
-                                        } else {
-                                            if ($tl_article[2]['id']) {
-                                                $tl_content = $db->executeQuery("SELECT id, pid, invisible, singleSRC FROM `tl_content` WHERE pid=".$tl_article[2]['id']." AND `invisible`!='1' AND `singleSRC`!='' AND ((`addImage`='1') OR (`type`='image')) ORDER BY `sorting` LIMIT 5;")->fetchAll();
-                                                if ($tl_content[2]['singleSRC']!='') { 
+                        $tl_article = $db->executeQuery("SELECT id, pid FROM `tl_article` WHERE pid=".$pageId." ORDER BY `sorting` LIMIT 4;")->fetchAll();
+                        if ($tl_article[0]['id']) {
+                            $tl_content = $db->executeQuery("SELECT id, pid, invisible, singleSRC FROM `tl_content` WHERE pid=".$tl_article[0]['id']." AND `invisible`!='1' AND `singleSRC`!='' AND ((`addImage`='1') OR (`type`='image')) ORDER BY `sorting` LIMIT 5;")->fetchAll();
+                            if ($tl_content[0]['singleSRC']!='') { 
+                                echo('{{picture::'.\Contao\FilesModel::findByUuid($tl_content[0]['singleSRC'])->path.'?size='.$size_id.'}}');
+                            } else {
+                                if ($tl_article[1]['id']) {
+                                    $tl_content = $db->executeQuery("SELECT id, pid, invisible, singleSRC FROM `tl_content` WHERE pid=".$tl_article[1]['id']." AND `invisible`!='1' AND `singleSRC`!='' AND ((`addImage`='1') OR (`type`='image')) ORDER BY `sorting` LIMIT 5;")->fetchAll();
+                                    if ($tl_content[1]['singleSRC']!='') { 
+                                        echo('{{picture::'.\Contao\FilesModel::findByUuid($tl_content[0]['singleSRC'])->path.'?size='.$size_id.'}}');
+                                    } else {
+                                        if ($tl_article[2]['id']) {
+                                            $tl_content = $db->executeQuery("SELECT id, pid, invisible, singleSRC FROM `tl_content` WHERE pid=".$tl_article[2]['id']." AND `invisible`!='1' AND `singleSRC`!='' AND ((`addImage`='1') OR (`type`='image')) ORDER BY `sorting` LIMIT 5;")->fetchAll();
+                                            if ($tl_content[2]['singleSRC']!='') { 
+                                                echo('{{picture::'.\Contao\FilesModel::findByUuid($tl_content[0]['singleSRC'])->path.'?size='.$size_id.'}}');
+                                            } else {
+                                                if ($tl_article[3]['id']) {
+                                                    $tl_content = $db->executeQuery("SELECT id, pid, invisible, singleSRC FROM `tl_content` WHERE pid=".$tl_article[3]['id']." AND `invisible`!='1' AND `singleSRC`!='' AND ((`addImage`='1') OR (`type`='image')) ORDER BY `sorting` LIMIT 5;")->fetchAll();
                                                     echo('{{picture::'.\Contao\FilesModel::findByUuid($tl_content[0]['singleSRC'])->path.'?size='.$size_id.'}}');
-                                                } else {
-                                                    if ($tl_article[3]['id']) {
-                                                        $tl_content = $db->executeQuery("SELECT id, pid, invisible, singleSRC FROM `tl_content` WHERE pid=".$tl_article[3]['id']." AND `invisible`!='1' AND `singleSRC`!='' AND ((`addImage`='1') OR (`type`='image')) ORDER BY `sorting` LIMIT 5;")->fetchAll();
-                                                        echo('{{picture::'.\Contao\FilesModel::findByUuid($tl_content[0]['singleSRC'])->path.'?size='.$size_id.'}}');
-                                                    }    
                                                 }    
-                                            }
+                                            }    
                                         }
                                     }
                                 }
