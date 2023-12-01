@@ -13,10 +13,6 @@ PaletteManipulator::create()
 ;
 
 $GLOBALS['TL_DCA']['tl_page']['fields'] += [    
-    'pageImageOrder' => [
-        'eval'          => array('doNotShow'=>true),
-        'sql'           => 'blob NULL'
-    ],
     'teaser_headline' => [
         'label'     => &$GLOBALS['TL_LANG']['tl_page']['teaser_headline'], 
         'inputType' => 'text', 
