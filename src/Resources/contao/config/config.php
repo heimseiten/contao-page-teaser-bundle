@@ -5,16 +5,22 @@ function getImage($page_id, $page_pid, $pages, $size_id, $without_text, $teaser_
         $db = \Contao\System::getContainer()->get('database_connection');
         $arrResults = $db->executeQuery("SELECT id, teaser_image_size_id, teaser_without_text FROM `tl_layout` WHERE id =". $GLOBALS['objPage']->layoutId ." ;")->fetch(); 
 
+        if ($db->executeQuery("SHOW COLUMNS FROM `tl_page` LIKE 'pageImage'")->rowCount() > 0) {
+            $ifPageImage = "`pageImage`,";
+        } else {
+            $ifPageImage = "";
+        }
+
         if ($pages) {
             if ($teaser_only_sub_pages) {
-                $arrResults = $db->executeQuery("SELECT `id`, `pid`, `title`, `pageTitle`, `description`, `teaser_headline`, `teaser_text`, `pageImage`, `target`, `cssClass` FROM `tl_page` WHERE pid in (". implode(',',$pages) .") AND `type`!='folder' AND `type`!='error_404' AND `hide`!='1' AND `published`='1' AND `id`!='".$page_id."' ORDER BY `sorting`;")->fetchAll();    
+                $arrResults = $db->executeQuery("SELECT `id`, `pid`, `title`, `pageTitle`, `description`, `teaser_headline`, `teaser_text`,".$ifPageImage." `target`, `cssClass` FROM `tl_page` WHERE pid in (". implode(',',$pages) .") AND `type`!='folder' AND `type`!='error_404' AND `hide`!='1' AND `published`='1' AND `id`!='".$page_id."' ORDER BY `sorting`;")->fetchAll();    
             } else {
-                $arrResults = $db->executeQuery("SELECT `id`, `title`, `pageTitle`, `description`, `teaser_headline`, `teaser_text`, `pageImage`, `target`, `cssClass` FROM `tl_page` WHERE id in (". implode(',',$pages) .") AND `type`!='folder' AND `type`!='error_404' AND `published`='1' AND `id`!='".$page_id."' ORDER BY `sorting`;")->fetchAll();    
+                $arrResults = $db->executeQuery("SELECT `id`, `title`, `pageTitle`, `description`, `teaser_headline`, `teaser_text`,".$ifPageImage." `target`, `cssClass` FROM `tl_page` WHERE id in (". implode(',',$pages) .") AND `type`!='folder' AND `type`!='error_404' AND `published`='1' AND `id`!='".$page_id."' ORDER BY `sorting`;")->fetchAll();    
             }
         } else {
-            $arrResults = $db->executeQuery("SELECT `id`, `title`, `pageTitle`, `description`, `teaser_headline`, `teaser_text`, `pageImage`, `target`, `cssClass` FROM `tl_page` WHERE pid =". $page_id ." AND `type`!='folder' AND `type`!='error_404' AND `hide`!='1' AND `published`='1' ORDER BY `sorting`;")->fetchAll();    
+            $arrResults = $db->executeQuery("SELECT `id`, `title`, `pageTitle`, `description`, `teaser_headline`, `teaser_text`,".$ifPageImage." `target`, `cssClass` FROM `tl_page` WHERE pid =". $page_id ." AND `type`!='folder' AND `type`!='error_404' AND `hide`!='1' AND `published`='1' ORDER BY `sorting`;")->fetchAll();    
             if ($arrResults == NULL){ 
-                $arrResults = $db->executeQuery("SELECT `id`, `pid`, `title`, `pageTitle`, `description`, `teaser_headline`, `teaser_text`, `pageImage`, `target`, `cssClass` FROM `tl_page` WHERE pid =". $page_pid ." AND `type`!='folder' AND `type`!='error_404' AND `hide`!='1' AND `published`='1' AND `id`!='".$page_id."' ORDER BY `sorting`;")->fetchAll();    
+                $arrResults = $db->executeQuery("SELECT `id`, `pid`, `title`, `pageTitle`, `description`, `teaser_headline`, `teaser_text`,".$ifPageImage." `target`, `cssClass` FROM `tl_page` WHERE pid =". $page_pid ." AND `type`!='folder' AND `type`!='error_404' AND `hide`!='1' AND `published`='1' AND `id`!='".$page_id."' ORDER BY `sorting`;")->fetchAll();    
             }            
         }
         $length = count($arrResults);
