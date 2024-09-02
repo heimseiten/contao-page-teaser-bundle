@@ -25,7 +25,7 @@ $GLOBALS['TL_DCA']['tl_content']['fields'] += [
             'multiple' => true,
             'fieldType' => 'checkbox',
             'files' => true,
-            'orderField' => 'teaser_order',
+            'isSortable' => true,
             'mandatory' => false,
         ],
         'sql' => 'blob NULL',
@@ -33,10 +33,6 @@ $GLOBALS['TL_DCA']['tl_content']['fields'] += [
             'type' => 'hasMany',
             'load' => 'lazy',
         ],
-    ],
-    'teaser_order' => [
-        'label' => &$GLOBALS['TL_LANG']['tl_content']['teaser_order'],
-        'sql' => 'blob NULL'
     ],
     'teaser_only_sub_pages' => [
         'inputType'     => 'checkbox', 
