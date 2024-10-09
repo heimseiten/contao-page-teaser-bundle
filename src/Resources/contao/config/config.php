@@ -26,10 +26,9 @@ function getImage($page_id, $page_pid, $pages, $size_id, $without_text, $teaser_
         $length = count($arrResults);
         for ($i = 0; $i < $length; $i++) {
             if ( $arrResults[$i]['teaser_headline'] ) {
-                $link_name = $arrResults[$i]['teaser_headline']; } else {
-                    if ( $arrResults[$i]['pageTitle'] ) { $link_name = $arrResults[$i]['pageTitle']; } else {
-                        if ( $arrResults[$i]['title'] ) { $link_name = $arrResults[$i]['title']; }
-                }
+                $link_name = $arrResults[$i]['teaser_headline']; 
+            } else {
+                if ( $arrResults[$i]['title'] ) { $link_name = $arrResults[$i]['title']; }
             }
             $link_name = strip_tags($link_name);
             $target = '';
@@ -38,7 +37,7 @@ function getImage($page_id, $page_pid, $pages, $size_id, $without_text, $teaser_
                 echo '<div class="inside">
                         <a'.$target.' href="{{link_url::'.$arrResults[$i]['id'].'}}" class="ce_teaser_item" aria-label="' . $link_name . '">'; 
                     if ($arrResults[$i]['pageImage']) { 
-                        renderPageImage( $arrResults[$i]['pageImage'], $size_id ); 
+                        echo '{{picture::'.\Contao\FilesModel::findByUuid($arrResults[$i]['pageImage'])->path.'?size='.$size_id.'}}';
                     } else {
                         $pageId = $arrResults[$i]['id'];
                         $tl_article = $db->executeQuery("SELECT id, pid FROM `tl_article` WHERE pid=".$pageId." ORDER BY `sorting` LIMIT 4;")->fetchAll();
