@@ -1,13 +1,12 @@
 services:
+    _defaults:
+        autowire: true
+        autoconfigure: true
 
-
-    # Contao content element Heimseiten\ContaoPageTeaserBundle\Controller\ContentElement\TeaserElementController
+    # The content element is registered via the #[AsContentElement] attribute
+    # on the controller (picked up through autoconfiguration).
     Heimseiten\ContaoPageTeaserBundle\Controller\ContentElement\TeaserElementController:
-        tags:
-            - { name: contao.content_element, category: links, template: ce_teaser_element, type: teaser_element }
-            - { name: container.service_subscriber }
         public: true
-    _instanceof:
-      Symfony\Bundle\FrameworkBundle\Controller\AbstractController:
-        calls:
-          - [ setContainer, [ '@Psr\Container\ContainerInterface' ] ]
+        arguments:
+            $studio: '@contao.image.studio'
+            $urlGenerator: '@contao.routing.content_url_generator'

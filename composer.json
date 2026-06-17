@@ -20,7 +20,8 @@
         "source": "https://github.com/heimseiten/contao-page-teaser-bundle"
     },
     "require": {
-        "contao/core-bundle": "^4.9 | ^5.0",
+        "php": "^8.1",
+        "contao/core-bundle": "^5.3",
         "heimseiten/contao-inviewport-bundle": "^3.0"
     },
     "require-dev": {

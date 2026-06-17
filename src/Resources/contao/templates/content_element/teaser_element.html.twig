@@ -1,0 +1,36 @@
+{% extends "@Contao/content_element/_base.html.twig" %}
+{% use "@Contao/component/_picture.html.twig" %}
+
+{% block content %}
+    {% add "heimseiten_page_teaser" to stylesheets %}
+        <link rel="stylesheet" href="{{ asset('bundles/heimseitencontaopageteaser/teaser.css') }}">
+    {% endadd %}
+    {% add "heimseiten_inviewport" to body %}
+        <script src="{{ asset('bundles/heimseitencontaoinviewport/inViewport.js') }}"></script>
+    {% endadd %}
+
+    {%- set teaser_style -%}
+        {%- if teaser_max_width %}--teaser_max_width: {{ teaser_max_width }};{% endif -%}
+        {%- if teaser_min_width %}--teaser_min_width: {{ teaser_min_width }};{% endif -%}
+    {%- endset -%}
+
+    <div class="ce_teaser_container ivp"{% if teaser_style %} style="{{ teaser_style }}"{% endif %}>
+        <div class="inside">
+            {% for item in items %}
+                <div class="ce_teaser_wrapper{{ item.cssClass ? ' ' ~ item.cssClass }}">
+                    <div class="inside">
+                        <a href="{{ item.href }}" class="ce_teaser_item" aria-label="{{ item.title }}"{{ item.newWindow ? ' target="_blank" rel="noopener"' }}>
+                            {% if item.figure %}
+                                {% with { figure: item.figure } %}{{ block('picture_component') }}{% endwith %}
+                            {% endif %}
+                            <div class="text">
+                                <h2>{{ item.title }}</h2>
+                                {% if item.text %}<p>{{ item.text }}</p>{% endif %}
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}

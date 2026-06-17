@@ -3,11 +3,12 @@
 use Contao\Config;
 use Contao\CoreBundle\DataContainer\PaletteManipulator;
 
+// Add the teaser settings under the existing image sizes legend ("Bildgrößen"),
+// for both the classic ("default") and the modern Twig ("modern") layout palette.
 PaletteManipulator::create()
-    ->addLegend('teaser_legend',        'image_legend', PaletteManipulator::POSITION_AFTER)
-    ->addField('teaser_image_size_id',  'teaser_legend', PaletteManipulator::POSITION_APPEND)
-    ->addField('teaser_without_text',   'teaser_legend', PaletteManipulator::POSITION_APPEND)
-    ->applyToPalette('default', 'tl_layout') 
+    ->addField(['teaser_image_size_id', 'teaser_without_text'], 'image_legend', PaletteManipulator::POSITION_APPEND)
+    ->applyToPalette('default', 'tl_layout')
+    ->applyToPalette('modern', 'tl_layout')
 ;
 
 $GLOBALS['TL_DCA']['tl_layout']['fields'] += [    
