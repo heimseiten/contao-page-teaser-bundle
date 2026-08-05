@@ -5,10 +5,14 @@ Im Startpunkt der Webseite kann eingestellt werden, welche Bildgröße verwendet
 
 ## Bildunterschrift
 
-Ist in den Metadaten der Bilddatei eine **Bildunterschrift** hinterlegt, wird sie im Teaser als
-Overlay auf dem Bild ausgegeben (unten rechts, leicht transparent hinterlegt, nur so breit wie der
-Text). Redakteure pflegen sie im Dateimanager – dieselbe Angabe wirkt damit überall dort, wo das
-Bild verwendet wird. Nützlich z. B. für Hinweise wie „KI-generiert“.
+Optional kann die in den Metadaten der Bilddatei hinterlegte **Bildunterschrift** im Teaser
+ausgegeben werden – als Overlay auf dem Bild (unten rechts, leicht transparent hinterlegt, nur so
+breit wie der Text). Redakteure pflegen sie im Dateimanager; dieselbe Angabe wirkt damit überall
+dort, wo das Bild verwendet wird. Nützlich z. B. für Hinweise wie „KI-generiert“.
+
+Die Ausgabe ist **standardmäßig aus** und wird im Seitenlayout unter „Bildgrößen“ aktiviert:
+**Bildunterschriften in den Teasern anzeigen**. Bestehende Installationen verhalten sich nach einem
+Update also unverändert, auch wenn bei Bildern Bildunterschriften hinterlegt sind.
 
 Anpassen über CSS-Variablen (auf `.ce_teaser_item` oder weiter oben gesetzt):
 

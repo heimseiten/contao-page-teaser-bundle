@@ -50,7 +50,7 @@ class TeaserElementController extends AbstractContentElementController
 
     protected function getResponse(FragmentTemplate $template, ContentModel $model, Request $request): Response
     {
-        [$size, $withoutText] = $this->getLayoutConfig();
+        [$size, $withoutText, $showCaption] = $this->getLayoutConfig();
 
         $items = [];
 
@@ -75,21 +75,23 @@ class TeaserElementController extends AbstractContentElementController
         $template->set('items', $items);
         $template->set('teaser_max_width', $model->teaser_max_width);
         $template->set('teaser_min_width', $model->teaser_min_width);
+        $template->set('teaser_show_caption', $showCaption);
 
         return $template->getResponse();
     }
 
     /**
-     * Reads the teaser image size and the "hide text" flag from the current layout.
+     * Reads the teaser image size, the "hide text" flag and the "show caption" flag
+     * from the current layout.
      *
-     * @return array{0: array|int|string|null, 1: bool}
+     * @return array{0: array|int|string|null, 1: bool, 2: bool}
      */
     private function getLayoutConfig(): array
     {
         $page = $this->getPageModel();
 
         if (!$page instanceof PageModel) {
-            return [null, false];
+            return [null, false, false];
         }
 
         $page->loadDetails();
@@ -97,7 +99,7 @@ class TeaserElementController extends AbstractContentElementController
         $layout = LayoutModel::findByPk($page->layoutId);
 
         if (!$layout instanceof LayoutModel) {
-            return [null, false];
+            return [null, false, false];
         }
 
         $size = StringUtil::deserialize($layout->teaser_image_size_id);
@@ -107,7 +109,7 @@ class TeaserElementController extends AbstractContentElementController
             $size = null;
         }
 
-        return [$size, (bool) $layout->teaser_without_text];
+        return [$size, (bool) $layout->teaser_without_text, (bool) $layout->teaser_show_caption];
     }
 
     /**

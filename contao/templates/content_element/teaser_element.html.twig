@@ -23,7 +23,7 @@
                             {% if item.figure %}
                                 <figure class="teaser_figure">
                                     {% with { figure: item.figure } %}{{ block('picture_component') }}{% endwith %}
-                                    {% if item.figure.metadata and item.figure.metadata.caption %}
+                                    {% if teaser_show_caption and item.figure.metadata and item.figure.metadata.caption %}
                                         <figcaption class="teaser_caption">{{ item.figure.metadata.caption }}</figcaption>
                                     {% endif %}
                                 </figure>

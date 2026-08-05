@@ -9,6 +9,7 @@ $GLOBALS['TL_LANG']['tl_page']['teaser_text'] = ['Seitenteaser Text', ''];
 $GLOBALS['TL_LANG']['tl_layout']['teaser_legend'] = 'Aussehen der Teaser';
 $GLOBALS['TL_LANG']['tl_layout']['teaser_image_size_id'] = ['Seitenteaser Bildgröße', 'Aktuell werden nur vordefinierte Bildgrößen unterstützt.'];
 $GLOBALS['TL_LANG']['tl_layout']['teaser_without_text'] = ['Seitenteaser ohne Text darstellen', ''];
+$GLOBALS['TL_LANG']['tl_layout']['teaser_show_caption'] = ['Bildunterschriften in den Teasern anzeigen', 'Zeigt die in den Metadaten der Bilddatei hinterlegte Bildunterschrift als Overlay auf dem Teaser-Bild an.'];
 
 $GLOBALS['TL_LANG']['tl_content']['teaser_legend'] = 'Seite/n, deren Teaser dargestellt werden soll/en.';
 $GLOBALS['TL_LANG']['tl_content']['teaser_pages'] = ['Seite/n für die ein Teaser-Element dargestellt werden soll.', 'Wenn nichts ausgewählt ist, werden Teaser von allen Unterseiten dargestellt. Wenn die Seite keine Unterseiten hat, werden alle anderen Seiten der gleichen Navigationsebene dargestellt.'];
