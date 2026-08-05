@@ -21,7 +21,12 @@
                     <div class="inside">
                         <a href="{{ item.href }}" class="ce_teaser_item" aria-label="{{ item.title }}"{{ item.newWindow ? ' target="_blank" rel="noopener"' }}>
                             {% if item.figure %}
-                                {% with { figure: item.figure } %}{{ block('picture_component') }}{% endwith %}
+                                <figure class="teaser_figure">
+                                    {% with { figure: item.figure } %}{{ block('picture_component') }}{% endwith %}
+                                    {% if item.figure.metadata and item.figure.metadata.caption %}
+                                        <figcaption class="teaser_caption">{{ item.figure.metadata.caption }}</figcaption>
+                                    {% endif %}
+                                </figure>
                             {% endif %}
                             <div class="text">
                                 <h2>{{ item.title }}</h2>

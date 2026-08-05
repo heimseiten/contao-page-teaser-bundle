@@ -135,3 +135,31 @@
     &:nth-child(19) { transition-delay: calc(19 * var(--duration)); }
     &:nth-child(20) { transition-delay: calc(20 * var(--duration)); }
 }
+
+/* Bildunterschrift (Metadaten „caption“ der Bilddatei) als Overlay auf dem Teaser-Bild.
+   Über CSS-Variablen projektweise anpassbar; ausblenden per
+   .ce_teaser_item .teaser_caption { display: none } */
+
+.ce_teaser_item .teaser_figure {
+    position: relative;
+    display: block;
+    margin: 0;
+
+    img, picture { display: block; }
+}
+
+.ce_teaser_item .teaser_caption {
+    position: absolute;
+    right: var(--teaser_caption_offset, 10px);
+    bottom: var(--teaser_caption_offset, 10px);
+    width: fit-content;
+    max-width: calc(100% - 2 * var(--teaser_caption_offset, 10px));
+    margin: 0;
+    padding: var(--teaser_caption_padding, 3px 9px);
+    background: var(--teaser_caption_background, rgba(255, 255, 255, 0.72));
+    color: var(--teaser_caption_color, #444);
+    font-size: var(--teaser_caption_font_size, 13px);
+    line-height: 1.5;
+    text-align: left;
+    border-radius: var(--teaser_caption_radius, 3px);
+}

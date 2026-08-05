@@ -2,3 +2,23 @@
 Die Erweiterung 'Seitenteaser' stellt Inhaltselemente bereit, die automatisch aus bestehenden Seiten Seitenteaser generieren. Hierfür wird auf das Seitenbild (terminal42/contao-pageimage) zurückgegriffen, falls vorhanden, ansonsten auf das erste verwendete Bild in der Seite verwendet. Außerdem wird der Seitentitel und die Seitenbeschreibung verwendet. Dies kann überschrieben werden, wenn in der Seite Extraeingaben für den Teaser Titel und die Teaserbeschreibung gemacht werden. 
 
 Im Startpunkt der Webseite kann eingestellt werden, welche Bildgröße verwendet und, ob ein Text angezeigt werden soll.
+
+## Bildunterschrift
+
+Ist in den Metadaten der Bilddatei eine **Bildunterschrift** hinterlegt, wird sie im Teaser als
+Overlay auf dem Bild ausgegeben (unten rechts, leicht transparent hinterlegt, nur so breit wie der
+Text). Redakteure pflegen sie im Dateimanager – dieselbe Angabe wirkt damit überall dort, wo das
+Bild verwendet wird. Nützlich z. B. für Hinweise wie „KI-generiert“.
+
+Anpassen über CSS-Variablen (auf `.ce_teaser_item` oder weiter oben gesetzt):
+
+| Variable | Standard |
+| --- | --- |
+| `--teaser_caption_offset` | `10px` |
+| `--teaser_caption_background` | `rgba(255, 255, 255, 0.72)` |
+| `--teaser_caption_color` | `#444` |
+| `--teaser_caption_font_size` | `13px` |
+| `--teaser_caption_padding` | `3px 9px` |
+| `--teaser_caption_radius` | `3px` |
+
+Ausblenden: `.ce_teaser_item .teaser_caption { display: none; }`
