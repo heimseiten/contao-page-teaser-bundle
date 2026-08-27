@@ -1,5 +1,5 @@
 # Inhaltselement Seitenteaser
-Die Erweiterung 'Seitenteaser' stellt Inhaltselemente bereit, die automatisch aus bestehenden Seiten Seitenteaser generieren. Hierfür wird auf das Seitenbild (terminal42/contao-pageimage) zurückgegriffen, falls vorhanden, ansonsten auf das erste verwendete Bild in der Seite verwendet. Außerdem wird der Seitentitel und die Seitenbeschreibung verwendet. Dies kann überschrieben werden, wenn in der Seite Extraeingaben für den Teaser Titel und die Teaserbeschreibung gemacht werden. 
+Die Erweiterung 'Seitenteaser' stellt Inhaltselemente bereit, die automatisch aus bestehenden Seiten Seitenteaser generieren. Als Bild dient das Seitenbild des Contao-Kerns (ab Contao 6, unter Contao 5.7 über heimseiten/contao-primary-page-image-bundle), ersatzweise das Seitenbild von terminal42/contao-pageimage und ansonsten das erste in der Seite verwendete Bild. Außerdem wird der Seitentitel und die Seitenbeschreibung verwendet. Dies kann überschrieben werden, wenn in der Seite Extraeingaben für den Teaser Titel und die Teaserbeschreibung gemacht werden. 
 
 Im Startpunkt der Webseite kann eingestellt werden, welche Bildgröße verwendet und, ob ein Text angezeigt werden soll.
 

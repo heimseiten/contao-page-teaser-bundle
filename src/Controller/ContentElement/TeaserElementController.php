@@ -35,9 +35,10 @@ use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
  * Renders a list of teasers for other pages.
  *
  * For each target page a title, a short text and a teaser image are collected.
- * The image is taken from the page image (terminal42/contao-pageimage) if set,
- * otherwise the first visible image found in the visible content elements of the
- * page's visible articles is used.
+ * The image is taken from the page image of the Contao core (Contao 6, or the
+ * primary page image bundle under Contao 5.7) if set, then from the page image of
+ * terminal42/contao-pageimage; otherwise the first visible image found in the
+ * visible content elements of the page's visible articles is used.
  */
 #[AsContentElement(type: 'teaser_element', category: 'links', template: 'content_element/teaser_element')]
 class TeaserElementController extends AbstractContentElementController
@@ -219,19 +220,27 @@ class TeaserElementController extends AbstractContentElementController
     }
 
     /**
-     * Builds the teaser image: the page image has precedence, otherwise the first
+     * Builds the teaser image. The page image of the Contao core has precedence,
+     * followed by the page image of terminal42/contao-pageimage; otherwise the first
      * visible image of the page's visible content elements is used.
      */
     private function buildFigure(PageModel $page, array|int|string|null $size): Figure|null
     {
-        // 1. Page image (terminal42/contao-pageimage)
+        // 1. Page image of the Contao core (Contao 6, or the primary page image
+        //    bundle under Contao 5.7). Reading the property is safe even when the
+        //    column does not exist: Model::__get() then returns null.
+        if ($figure = $this->createFigure($page->primaryImage, $size)) {
+            return $figure;
+        }
+
+        // 2. Page image (terminal42/contao-pageimage)
         foreach (StringUtil::deserialize($page->pageImage, true) as $uuid) {
             if ($figure = $this->createFigure($uuid, $size)) {
                 return $figure;
             }
         }
 
-        // 2. First visible image in the visible articles of the page
+        // 3. First visible image in the visible articles of the page
         $time = Date::floorToMinute();
         $pageId = (int) $page->id;
 
