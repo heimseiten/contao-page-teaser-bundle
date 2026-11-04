@@ -19,7 +19,7 @@
             {% for item in items %}
                 <div class="ce_teaser_wrapper{{ item.cssClass ? ' ' ~ item.cssClass }}">
                     <div class="inside">
-                        <a href="{{ item.href }}" class="ce_teaser_item" aria-label="{{ item.title|insert_tag }}"{{ item.newWindow ? ' target="_blank" rel="noopener"' }}>
+                        <a href="{{ item.href }}" class="ce_teaser_item" aria-label="{{ item.title|insert_tag(false) }}"{{ item.newWindow ? ' target="_blank" rel="noopener"' }}>
                             {% if item.figure %}
                                 <figure class="teaser_figure">
                                     {% with { figure: item.figure } %}{{ block('picture_component') }}{% endwith %}
@@ -29,8 +29,8 @@
                                 </figure>
                             {% endif %}
                             <div class="text">
-                                <h2>{{ item.title|insert_tag_raw }}</h2>
-                                {% if item.text %}<p>{{ item.text|insert_tag_raw }}</p>{% endif %}
+                                <h2>{{ item.title|insert_tag_raw(false) }}</h2>
+                                {% if item.text %}<p>{{ item.text|insert_tag_raw(false) }}</p>{% endif %}
                             </div>
                         </a>
                     </div>
