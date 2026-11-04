@@ -51,7 +51,7 @@ class TeaserElementController extends AbstractContentElementController
 
     protected function getResponse(FragmentTemplate $template, ContentModel $model, Request $request): Response
     {
-        [$size, $withoutText, $showCaption] = $this->getLayoutConfig();
+        [$size, $titleFromName, $withoutText, $showCaption] = $this->getLayoutConfig();
 
         $items = [];
 
@@ -63,9 +63,13 @@ class TeaserElementController extends AbstractContentElementController
                 continue;
             }
 
+            // Page name (tl_page.title) or meta title (tl_page.pageTitle, falling back to
+            // the page name); an explicit teaser headline always wins
+            $title = $titleFromName ? $page->title : ($page->pageTitle ?: $page->title);
+
             $items[] = [
                 'href' => $href,
-                'title' => strip_tags((string) ($page->teaser_headline ?: $page->pageTitle ?: $page->title)),
+                'title' => strip_tags((string) ($page->teaser_headline ?: $title)),
                 'text' => $withoutText ? '' : strip_tags((string) ($page->teaser_text ?: $page->description)),
                 'newWindow' => (bool) $page->target,
                 'cssClass' => (string) $page->cssClass,
@@ -82,17 +86,17 @@ class TeaserElementController extends AbstractContentElementController
     }
 
     /**
-     * Reads the teaser image size, the "hide text" flag and the "show caption" flag
-     * from the current layout.
+     * Reads the teaser image size, the "title from page name" flag, the "hide text"
+     * flag and the "show caption" flag from the current layout.
      *
-     * @return array{0: array|int|string|null, 1: bool, 2: bool}
+     * @return array{0: array|int|string|null, 1: bool, 2: bool, 3: bool}
      */
     private function getLayoutConfig(): array
     {
         $page = $this->getPageModel();
 
         if (!$page instanceof PageModel) {
-            return [null, false, false];
+            return [null, false, false, false];
         }
 
         $page->loadDetails();
@@ -100,7 +104,7 @@ class TeaserElementController extends AbstractContentElementController
         $layout = LayoutModel::findByPk($page->layoutId);
 
         if (!$layout instanceof LayoutModel) {
-            return [null, false, false];
+            return [null, false, false, false];
         }
 
         $size = StringUtil::deserialize($layout->teaser_image_size_id);
@@ -110,7 +114,7 @@ class TeaserElementController extends AbstractContentElementController
             $size = null;
         }
 
-        return [$size, (bool) $layout->teaser_without_text, (bool) $layout->teaser_show_caption];
+        return [$size, (bool) $layout->teaser_title_from_name, (bool) $layout->teaser_without_text, (bool) $layout->teaser_show_caption];
     }
 
     /**
